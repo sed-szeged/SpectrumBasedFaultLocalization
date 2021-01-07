@@ -1,5 +1,6 @@
 # Call Frequency-Based Fault Localization
 
+This fault localization concept uses as an additional context the frequency of the investigated method occurring in call stack instances during the course of executing the failing test cases.
 
 ## The docker image contains:
  - Defects4J bug dataset [(available)](https://github.com/Frenkymd/defects4j/tree/chain)
@@ -21,46 +22,46 @@
     
 		    docker image ls
 	
-	- Start docker
+    - Start docker
 		 
 		    docker run -i -t [IMAGE ID]
 		- For example: docker run -i -t 25a0b0ce79a0 /bin/bash
 
-   - [Docker is running...]
+    - [Docker is running...]
 
-	- Download a Defects4J-bug
+    - Download a Defects4J-bug
 
 		    defects4j checkout -p [project] -v [bug][version] -w [output folder]
 		- For example: defects4j checkout -p Lang -v 1b -w /defects4j/Lang_1b
 
-	- Enter bug's directory
+    - Enter bug's directory
 
 		    cd [output folder]
-      - For example: cd /defects4j/Lang_1b
+		- For example: cd /defects4j/Lang_1b
 
-	- Compile project
+    - Compile project
 
 		    defects4j compile
 
-	- Run tests
+    - Run tests
 
 		    defects4j test
 
-	- Set permissions
+    - Set permissions
 
 		    chmod -R [XXX] ./coverage
-      - For example:  chmod -R 777 ./coverage
+		- For example: chmod -R 777 ./coverage
 
- 2. Calculate the FL-scores/ranks:
+ 3. Calculate the FL-scores/ranks:
 
     - Enter (python) script directory: 
 
 		    cd /python_scripts
 
-	- Run main.py
+    - Run main.py
 
 		    python3 -W ignore main.py --cov-folder=[output folder]/coverage/ --nameMapping=[output folder]/coverage/trace.trc.names --change=./changed_methods/Lang-changes.csv --bugID=[bug]
-      - For example:  python3 -W ignore main.py --cov-folder=/defects4j/Lang_1b/coverage/ --nameMapping=/defects4j/Lang_1b/coverage/trace.trc.names --change=./changed_methods/Lang-changes.csv --bugID=1
+		- For example: python3 -W ignore main.py --cov-folder=/defects4j/Lang_1b/coverage/ --nameMapping=/defects4j/Lang_1b/coverage/trace.trc.names --change=./changed_methods/Lang-changes.csv --bugID=1
 
 ## Result
 
