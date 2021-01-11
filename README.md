@@ -9,35 +9,36 @@ This fault localization concept uses as an additional context the frequency of t
 
 ## Steps:
 
- 1. Start Docker
+ 1. Prepare Docker environment
 
 	- clone this repository
 	- build docker:
 		 
-		    docker build -t d4j --build-arg AGENT_VERSION=0.0.4 .
+		    docker build -t sbfl .
 
  2. Create unique deepest call stacks (UDCS)
-
-    - Docker image-id: 
-    
-		    docker image ls
 	
     - Start docker
 		 
-		    docker run -i -t [IMAGE ID]
-		- For example: docker run -i -t 25a0b0ce79a0 /bin/bash
+		    docker run --rm -it sbfl /bin/bash
 
     - [Docker is running...]
 
-    - Download a Defects4J-bug
+    - Checkout a bug from Defects4J
 
 		    defects4j checkout -p [project] -v [bug][version] -w [output folder]
-		- For example: defects4j checkout -p Lang -v 1b -w /defects4j/Lang_1b
+
+		- For example:
+
+			defects4j checkout -p Lang -v 1b -w Lang_1b
 
     - Enter bug's directory
 
 		    cd [output folder]
-		- For example: cd /defects4j/Lang_1b
+
+		- For example:
+
+			cd Lang_1b
 
     - Compile project
 
@@ -50,7 +51,10 @@ This fault localization concept uses as an additional context the frequency of t
     - Set permissions
 
 		    chmod -R [XXX] ./coverage
-		- For example: chmod -R 777 ./coverage
+
+		- For example:
+
+			chmod -R 777 ./coverage
 
  3. Calculate the FL-scores/ranks:
 
@@ -60,8 +64,19 @@ This fault localization concept uses as an additional context the frequency of t
 
     - Run main.py
 
-		    python3 -W ignore main.py --cov-folder=[output folder]/coverage/ --nameMapping=[output folder]/coverage/trace.trc.names --change=./changed_methods/Lang-changes.csv --bugID=[bug]
-		- For example: python3 -W ignore main.py --cov-folder=/defects4j/Lang_1b/coverage/ --nameMapping=/defects4j/Lang_1b/coverage/trace.trc.names --change=./changed_methods/Lang-changes.csv --bugID=1
+		    python3 -W ignore main.py \
+		    	--cov-folder=[output folder]/coverage/ \
+		    	--nameMapping=[output folder]/coverage/trace.trc.names \
+		    	--change=./changed_methods/Lang-changes.csv \
+		    	--bugID=[bug]
+
+		- For example:
+
+			python3 -W ignore main.py \
+				--cov-folder=/sbfl/Lang_1b/coverage/ \
+				--nameMapping=/sbfl/Lang_1b/coverage/trace.trc.names \
+				--change=./changed_methods/Lang-changes.csv \
+				--bugID=1
 
 ## Result
 
