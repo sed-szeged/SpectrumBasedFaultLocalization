@@ -6,7 +6,7 @@
 
 ## Steps to set up 
 
- First, download the compressed ZIP (executable binary) from [this link]()
+ First, download the compressed ZIP (executable binary) from [this link](https://github.com/sed-szeged/SpectrumBasedFaultLocalization/releases/tag/v1.0.2)
  
  Then: 
 - Drag and drop into your PyCharm IDE
