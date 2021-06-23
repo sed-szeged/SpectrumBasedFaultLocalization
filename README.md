@@ -23,8 +23,12 @@
 
 ## How to use
 
+In our tool-demo paper we used an example project to demonstrate the usage.
+The pictures below shows the steps we made with our tool.
+You can get the example project from [this link](https://github.com/SzatmariA/CharmFL/tree/main/example)
+
 First, make sure your virtual environment is properly set up, and installed all the required packages.
-Whenever that happens, you can click on the Run button below the CharmFL menu
+Whenever that happens, you can click on the Run button below the CharmFL menu.
 ![charmfl_run](https://user-images.githubusercontent.com/17518412/123008666-98c00c00-d3bb-11eb-8159-b9c96b0fb300.PNG)
 
 Wait for the process to finish, then check the list of suspicious elements, and start your debugging.
