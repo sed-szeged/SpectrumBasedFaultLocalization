@@ -9,74 +9,92 @@ This fault localization concept uses as an additional context the frequency of t
 
 ## Steps:
 
- 1. Prepare Docker environment
+ 1. Prepare the Docker environment
 
-	- clone this repository
-	- build docker:
-		 
-		    docker build -t sbfl .
+    - clone this repository
+    - build docker:
 
- 2. Create unique deepest call stacks (UDCS)
-	
+            docker build -t sbfl .
+
+ 2. Create naive and unique count spectra
+
     - Start docker
-		 
-		    docker run --rm -it sbfl /bin/bash
+
+            docker run --rm -it sbfl /bin/bash
 
     - [Docker is running...]
 
     - Checkout a bug from Defects4J
 
-		    defects4j checkout -p [project] -v [bug][version] -w [output folder]
+            defects4j checkout -p [project] -v [bug][version] -w [output folder]
 
-		- For example:
+        - For example:
 
-			defects4j checkout -p Lang -v 1b -w Lang_1b
+            defects4j checkout -p Lang -v 1b -w Lang_1b
 
     - Enter bug's directory
 
-		    cd [output folder]
+            cd [output folder]
 
-		- For example:
+        - For example:
 
-			cd Lang_1b
+            cd Lang_1b
 
     - Compile project
 
-		    defects4j compile
+            defects4j compile
 
-    - Run tests
+    - Set the coverage data collection granularity to naive count
 
-		    defects4j test
+            export AGENT_GRANULARITY=count
 
-    - Set permissions
+    - Run the tests
 
-		    chmod -R [XXX] ./coverage
+            defects4j test
 
-		- For example:
+    - Save the coverage data to a different directory and fix the permissions
 
-			chmod -R 777 ./coverage
+            mv ./coverage ./naive-coverage
+            chmod -R a+w ./naive-coverage
+
+    - Set the coverage data collection granularity to unique count
+
+            export AGENT_GRANULARITY=chain
+
+    - Run the tests
+
+            defects4j test
+
+    - Save the coverage data to a different directory and fix the permissions
+
+            mv ./coverage ./unique-coverage
+            chmod -R a+w ./unique-coverage
 
  3. Calculate the FL-scores/ranks:
 
     - Enter (python) script directory: 
 
-		    cd /python_scripts
+            cd /python_scripts
 
     - Run main.py
 
-		    python3 -W ignore main.py \
-		    	--cov-folder=[output folder]/coverage/ \
-		    	--nameMapping=[output folder]/coverage/trace.trc.names \
-		    	--change=./changed_methods/Lang-changes.csv \
-		    	--bugID=[bug]
+            python3 -W ignore main.py \
+                --naive-folder=[output folder]/naive-coverage/ \
+                --naive-mapper=[output folder]/naive-coverage/trace.trc.names \
+                --unique-folder=[output folder]/unique-coverage/ \
+                --unique-mapper=[output folder]/unique-coverage/trace.trc.names \
+                --change=./changed_methods/Lang-changes.csv \
+                --bugID=[bug]
 
-		- For example:
+        - For example:
 
-			python3 -W ignore main.py \
-				--cov-folder=/sbfl/Lang_1b/coverage/ \
-				--nameMapping=/sbfl/Lang_1b/coverage/trace.trc.names \
-				--change=./changed_methods/Lang-changes.csv \
-				--bugID=1
+                python3 -W ignore main.py \
+                    --naive-folder=/sbfl/Lang_1b/naive-coverage/ \
+                    --naive-mapper=/sbfl/Lang_1b/naive-coverage/trace.trc.names \
+                    --unique-folder=/sbfl/Lang_1b/unique-coverage/ \
+                    --unique-mapper=/sbfl/Lang_1b/unique-coverage/trace.trc.names \
+                    --change=./changed_methods/Lang-changes.csv \
+                    --bugID=1
 
 ## Result
 
