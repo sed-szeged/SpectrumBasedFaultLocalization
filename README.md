@@ -99,12 +99,20 @@ This fault localization concept uses as an additional context the frequency of t
 ## Result
 
 Result of python scipt:
-| bugID | Barinel| Barinel-C | Jaccard | Jaccard-C | ... |
-|--|--|--|--|--|--|
-| [ID] | [rank] | [rank] | [rank] | [rank] | [rank] |
+| bugID | Barinel-hit | Barinel-naive-num_ef | Barinel-naive-ef | Barinel-naive-ef_ep | Barinel-naive-ef_ep_nf_np | Barinel-unique-num_ef | Barinel-unique-ef | Barinel-unique-ef_ep | Barinel-unique-ef_ep_nf_np | DStar-hit | ... |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| [ID] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] | [rank] |
   
   - Rank(name):
-    - without `-C`: the rank based on "original" (hit)
-    - with `-C` : the rank based on call frequency
+    - spectra:
+      - hit: using "original" hit-based spectra
+      - naive:  using naive count-based spectra
+      - unique: using unique count-based spectra
+    - adapting the risk formulae:
+      - num-ef: only *ef* is replaced in the numerator
+      - ef: each occurrence of *ef* is overwritten
+      - ef_ep: the values of all occurrences of *ef* and *ep* are changed in the formula
+      - ef_ep_nf_np: all hit-based spectrum metrics are replaced
+     
 
 The `result.csv` contains the average ranks for all bugs.
