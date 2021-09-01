@@ -38,4 +38,7 @@ Wait for the process to finish, then check the list of suspicious elements, and 
 ![debug](https://user-images.githubusercontent.com/88377897/128152110-05d6ac3b-6aa8-4952-a3b0-c118a70f34cb.png)
 
 
+## Citation
+If you use this tool, please cite:
 
+Qusay Idrees Sarhan, Attila Szatmári, Rajmond Toth, and Árpád Beszédes. CharmFL: A Fault Localization Tool for Python. The 21st IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM), 2021. 
