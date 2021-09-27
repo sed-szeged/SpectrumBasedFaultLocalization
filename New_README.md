@@ -17,8 +17,5 @@ CharmFL: A Fault Localization tool for Python integrated in the latest PyCharm I
     - Change granularity
     - Change the ranking 
      
---------------------------------------------------------------------------------------------------------------------------------------------------
 
- <!-- Plugin description -->
-CharmFL™
-<!-- Plugin description end -->
+ 

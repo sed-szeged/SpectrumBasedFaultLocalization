@@ -44,6 +44,8 @@ repositories {
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     implementation("org.testng:testng:7.1.0")
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20210307")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.15.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
@@ -139,6 +141,61 @@ tasks {
 
     prepareSandbox {
         doLast {
+            copy {
+                from(file("$projectDir/src/main/python/automation.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/coverageMatrix.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/methodCov.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/metrics.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/ranking.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/resultsLogging.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/sorting.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/statistics.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/test_res2.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/testFiles.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
+            copy {
+                from(file("$projectDir/src/main/python/testsResults.py"))
+                into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
+            }
+
             copy {
                 from(file("$projectDir/src/main/python/main.py"))
                 into(file("$buildDir/idea-sandbox/plugins/$pluginName_"))
