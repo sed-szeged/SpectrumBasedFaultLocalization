@@ -1,6 +1,6 @@
 # CharmFL
 
-## A quick overview of the tool
+## A quick overview of the prototype of our tool
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yTAfSekd-xo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -9,6 +9,8 @@
 ## Steps to set up 
 
  First, download the compressed ZIP (executable binary) from [this link](https://github.com/doubleblindforscam2021/charmfl/raw/main/charmfl.rar)
+ 
+ New polished version coming soon.
  
 
  Then: 
@@ -23,7 +25,9 @@
 - Run the Fault Localization
 - Clear the results from the memory
 - View the hierarchical list of suspicious elements
+- View the static call graph
 - Transform statement to method and class coverage
+- Interact with the ranked tree of suspicious elements
 - Advanced options:
     - Choose different SBFL metrics to compare the efficiency
     - Choose from Tie breaking strategies
