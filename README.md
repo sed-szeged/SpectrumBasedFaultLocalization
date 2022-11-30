@@ -1,6 +1,6 @@
 <html>
   <head>
-    <meta http-equiv="refresh" content="3; url='https://interactivefaultlocalization.github.io/tools/charmfl'" />
+    <meta http-equiv="refresh" content="0; url='https://interactivefaultlocalization.github.io/tools/charmfl'" />
   </head>
   <body>
     <p> CharmFL was moved under the Interactive Fault Localization website.</p>
